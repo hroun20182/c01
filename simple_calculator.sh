@@ -1,23 +1,19 @@
 #!/bin/bash
-
 # Vérifie que 3 arguments sont fournis
 if [ $# -ne 3 ]; then
     echo "Usage : $0 nombre1 nombre2 opérateur"
     echo "Opérateurs valides : +  -  *  /"
     exit 1
 fi
-
 # Récupération des arguments
 N1=$1
 N2=$2
 OP=$3
-
 # Vérification que les deux premiers arguments sont des nombres
 if ! [[ "$N1" =~ ^-?[0-9]+([.][0-9]+)?$ ]] || ! [[ "$N2" =~ ^-?[0-9]+([.][0-9]+)?$ ]]; then
     echo "Erreur : Les deux premiers arguments doivent être des nombres."
     exit 1
 fi
-
 # Calcul en fonction de l'opérateur
 case "$OP" in
     +)
@@ -41,6 +37,5 @@ case "$OP" in
         exit 1
         ;;
 esac
-
 # Affiche le résultat
 echo "Résultat : $RESULT"
