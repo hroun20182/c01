@@ -1,10 +1,8 @@
 #!/bin/bash
-
 # Affiche l'utilisation générale du disque
 echo "=== Utilisation du disque (tous les systèmes montés) ==="
 df -h
 echo
-
 # Si un dossier est fourni en argument, affiche son utilisation détaillée
 if [ -n "$1" ]; then
     if [ -d "$1" ]; then
