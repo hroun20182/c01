@@ -1,23 +1,23 @@
 #!/bin/bash
-# Ce script recherche une chaîne dans un fichier
 
+# Vérifie si deux arguments sont fournis
 if [ $# -ne 2 ]; then
-    echo "Utilisation : $0 <fichier> <chaîne>"
+    echo "Usage : $0 nom_du_fichier chaine_a_rechercher"
     exit 1
 fi
 
-FILE=$1
-STRING=$2
+FICHIER="$1"
+CHAINE="$2"
 
-# Vérifie que le fichier existe
-if [ ! -f "$FILE" ]; then
-    echo "Erreur : le fichier '$FILE' n'existe pas."
+# Vérifie si le fichier existe
+if [ ! -f "$FICHIER" ]; then
+    echo "Le fichier \"$FICHIER\" n'existe pas."
     exit 1
 fi
 
-# Recherche de la chaîne
-if grep -q "$STRING" "$FILE"; then
-    echo "La chaîne '$STRING' a été trouvée dans $FILE."
+# Recherche la chaîne avec grep
+if grep -q "$CHAINE" "$FICHIER"; then
+    echo "La chaîne '$CHAINE' a été trouvée dans $FICHIER."
 else
-    echo "La chaîne '$STRING' n'a pas été trouvée dans $FILE."
+    echo "La chaîne '$CHAINE' n'a pas été trouvée dans $FICHIER."
 fi

@@ -1,17 +1,19 @@
 #!/bin/bash
-# Ce script affiche l'utilisation du disque de manière lisible
 
-# Si un répertoire est passé en argument, utiliser ce répertoire
-# Sinon, utiliser le répertoire courant
-TARGET=${1:-.}
+# Affiche l'utilisation générale du disque
+echo "=== Utilisation du disque (tous les systèmes montés) ==="
+df -h
+echo
 
-if [ ! -d "$TARGET" ]; then
-    echo "Erreur : '$TARGET' n'est pas un répertoire."
-    exit 1
+# Si un dossier est fourni en argument, affiche son utilisation détaillée
+if [ -n "$1" ]; then
+    if [ -d "$1" ]; then
+        echo "=== Utilisation détaillée du dossier : $1 ==="
+        du -sh "$1"
+    else
+        echo "Erreur : \"$1\" n'est pas un dossier valide."
+        exit 1
+    fi
+else
+    echo "Aucun dossier spécifié pour l'analyse détaillée."
 fi
-
-echo "Utilisation du disque pour : $TARGET"
-du -sh "$TARGET"
-
-echo "Utilisation du disque globale :"
-df -h | grep '^/dev'
