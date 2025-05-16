@@ -15,3 +15,4 @@ if [ -n "$1" ]; then
 else
     echo "Aucun dossier spécifié pour l'analyse détaillée."
 fi
+ 

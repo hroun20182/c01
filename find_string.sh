@@ -1,19 +1,26 @@
 #!/bin/bash
-# Vérifie si deux arguments sont fournis
-if [ $# -ne 2 ]; then
-    echo "Usage : $0 nom_du_fichier chaine_a_rechercher"
+
+# Vérifier que l'utilisateur a bien fourni deux arguments
+if [ $# -lt 2 ]; then
+    echo "Erreur : nombre d'arguments insuffisant."
+    echo "Usage : $0 <chaine_recherchee> <fichier>"
     exit 1
 fi
-FICHIER="$1"
-CHAINE="$2"
-# Vérifie si le fichier existe
-if [ ! -f "$FICHIER" ]; then
-    echo "Le fichier \"$FICHIER\" n'existe pas."
-    exit 1
+
+chaine="$1"
+fichier="$2"
+
+# Vérifier que le fichier existe et est lisible
+if [ ! -f "$fichier" ]; then
+    echo "Erreur : le fichier '$fichier' n'existe pas ou n'est pas un fichier régulier."
+    exit 2
 fi
-# Recherche la chaîne avec grep
-if grep -q "$CHAINE" "$FICHIER"; then
-    echo "La chaîne '$CHAINE' a été trouvée dans $FICHIER."
-else
-    echo "La chaîne '$CHAINE' n'a pas été trouvée dans $FICHIER."
+
+# Recherche de la chaîne (insensible à la casse, avec numéros de ligne et mise en couleur)
+echo "Recherche de '$chaine' dans le fichier '$fichier'..."
+grep -in --color=always "$chaine" "$fichier"
+
+# Vérifier le code retour de grep
+if [ $? -ne 0 ]; then
+    echo "Aucune correspondance trouvée."
 fi
