@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Vérifier que l'utilisateur a bien fourni deux arguments
-if [ $# -lt 2 ]; then
+if [ $@ -lt 2 ]; then
     echo "Erreur : nombre d'arguments insuffisant."
     echo "Usage : $0 <chaine_recherchee> <fichier>"
     exit 1
