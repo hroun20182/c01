@@ -18,7 +18,7 @@ fi
 
 # Recherche de la chaîne (insensible à la casse, avec numéros de ligne et mise en couleur)
 echo "Recherche de '$chaine' dans le fichier '$fichier'..."
-grep -in --color=always "$chaine" "$fichier"
+grep -i --color=always "$chaine" "$fichier"
 
 # Vérifier le code retour de grep
 if [ $? -ne 0 ]; then
