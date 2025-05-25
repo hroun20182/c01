@@ -1,18 +1,11 @@
 #!/bin/bash
-# Demander à l'utilisateur d'entrer le nom du fichier
-echo "Entrez le nom du fichier : " 
-read  fichier
-# Vérifier que le fichier existe
-if [ ! -f "$fichier" ]; then
-    echo "Le fichier '$fichier' n'existe pas."
-    exit 1
-fi
-# Demander la chaîne à rechercher
-echo "Entrez la chaîne à rechercher :"
-read chaine
-# Rechercher la chaîne dans le fichier
-if grep -q "$chaine" "$fichier"; then
-    echo "La chaîne '$chaine' a été trouvée dans $fichier."
+# Ce script recherche une chaîne de caractères dans un fichier
+read filename #Demande à l'utilisaeur d'entrer le nom d'un fichier 
+read chaine # Demandde à l'utilisateur  d'entrer la chaîne à rechercher 
+# Utilisation de grep avec -q (quiet) pour verifier si la chaîne existe dans le fichier
+if grep -q "$chaine" "$filename"; then
+  echo "La chaîne '$chaine' a été trouvée dans $filename."
 else
-    echo "La chaîne '$chaine' n'a pas été trouvée dans $fichier."
+  echo "La chaîne '$chaine' n'a pas été trouvée dans $filename."
 fi
+
