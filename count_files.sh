@@ -1,17 +1,14 @@
 #!/bin/bash
-# Vérifie si un argument (nom du dossier) est fourni
-if [ -z "$1" ]; then
-    echo "Usage : $0 nom_du_dossier"
-    exit 1
-fi
-# Récupère le nom du dossier
-REPERTOIRE="$1"
+
+# Nom du dossier à analyser 
+echo "Entrez le nom du dossier : "
+read  folder
+
 # Vérifie si le dossier existe
-if [ ! -d "$REPERTOIRE" ]; then
-    echo "Le dossier \"$REPERTOIRE\" n'existe pas."
-    exit 1
+if [ -d "$folder" ]; then
+    # Compte le nombre de fichiers (en excluant les sous-dossiers)
+    count=$(ls -p "$folder" | grep -v / | wc -l)
+    echo "Le dossier $folder contient $count fichier(s)"
+else
+    echo "Le dossier $folder n'existe pas."
 fi
-# Compte le nombre de fichiers (ignore les dossiers)
-NB_FICHIERS=$(find "$REPERTOIRE" -type f | wc -l)
-# Affiche le résultat
-echo "Le dossier $REPERTOIRE contient $NB_FICHIERS fichier(s)."
