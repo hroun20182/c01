@@ -1,15 +1,11 @@
 #!/bin/bash
 # Nom du dossier à analyser
-echo "Entrez le nom du dossier : "
+echo "Entrer le nom du dossier :"
 read folder
 # Vérifie si le dossier existe
 if [ -d "$folder" ]; then
-    count=0
-    for item in "$folder"/*; do
-        if [ -f "$item" ]; then
-            count=$((count + 1))
-        fi
-    done
+    # Compte le nombre de fichiers (en excluant les sous-dossiers)
+    count=$(ls -p "$folder" | grep -v / | wc -l)
     echo "Le dossier $folder contient $count fichier(s)"
 else
     echo "Le dossier $folder n'existe pas."
